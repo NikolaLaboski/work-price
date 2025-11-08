@@ -1,8 +1,9 @@
 // src/pages/Contact.jsx
 import React, { useState } from 'react'
 
-const FORM_ENDPOINT = "https://formspree.io/f/PUT-THE-FORM-ID-HERE"; // ← замени со твојот Formspree endpoint
-const INSTAGRAM_URL = "https://www.instagram.com/weblab.mk93/"; 
+// 🔗 Твојот вистински Formspree endpoint:
+const FORM_ENDPOINT = "https://formspree.io/f/xanawnbr";
+const INSTAGRAM_URL = "https://www.instagram.com/weblab.mk93/";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -12,8 +13,8 @@ const Contact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if (!FORM_ENDPOINT || FORM_ENDPOINT.includes("PUT-THE-FORM-ID-HERE")) {
-      setStatus({ sending: false, ok: false, msg: "Постави Formspree FORM ID во кодот." })
+    if (!FORM_ENDPOINT) {
+      setStatus({ sending: false, ok: false, msg: "Недостасува Formspree FORM ID во кодот." })
       return
     }
     try {
@@ -28,18 +29,18 @@ const Contact = () => {
         })
       })
       if (res.ok) {
-        setStatus({ sending: false, ok: true, msg: "Пораката е успешно испратена. Ти благодарам! ✅" })
+        setStatus({ sending: false, ok: true, msg: "✅ Пораката е успешно испратена. Ти благодарам!" })
         setForm({ name: '', email: '', message: '' })
       } else {
         const data = await res.json().catch(() => ({}))
         setStatus({
           sending: false,
           ok: false,
-          msg: data?.error || "Настана грешка при испраќањето. Обиди се повторно."
+          msg: data?.error || "❌ Настана грешка при испраќањето. Обиди се повторно."
         })
       }
     } catch (err) {
-      setStatus({ sending: false, ok: false, msg: "Нема мрежа или сервисот е недостапен. Обиди се пак." })
+      setStatus({ sending: false, ok: false, msg: "⚠️ Нема мрежа или сервисот е недостапен. Обиди се пак." })
     }
   }
 
@@ -55,8 +56,9 @@ const Contact = () => {
             style={{ display: 'none' }}
             tabIndex={-1}
             autoComplete="off"
-            onChange={()=>{}}
+            onChange={() => {}}
           />
+
           <input
             name="name"
             placeholder="Име и презиме"
@@ -80,16 +82,12 @@ const Contact = () => {
             onChange={onChange}
             required
           />
+
           <button type="submit" disabled={status.sending}>
             {status.sending ? "Се испраќа..." : "Испрати порака"}
           </button>
 
-          {status.ok === true && (
-            <p className="note" style={{ marginTop: 8 }}>
-              {status.msg}
-            </p>
-          )}
-          {status.ok === false && (
+          {status.ok !== null && (
             <p className="note" style={{ marginTop: 8 }}>
               {status.msg}
             </p>
