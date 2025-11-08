@@ -5,7 +5,7 @@ import Pricing from './pages/Pricing.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 
-const INSTAGRAM_URL = "https://instagram.com/your_username" // ← стави го твојот Instagram
+const INSTAGRAM_URL = "https://www.instagram.com/weblab.mk93/" 
 
 const App = () => {
   return (

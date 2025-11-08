@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 
 const FORM_ENDPOINT = "https://formspree.io/f/PUT-THE-FORM-ID-HERE"; // ← замени со твојот Formspree endpoint
-const INSTAGRAM_URL = "https://instagram.com/your_username"; // ← стави го твојот Инстаграм
+const INSTAGRAM_URL = "https://www.instagram.com/weblab.mk93/"; 
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
